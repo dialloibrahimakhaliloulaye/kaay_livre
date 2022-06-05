@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kaay_livre/splashScreen/splash_screen.dart';
 
 void main() async
 {
@@ -10,7 +11,7 @@ void main() async
         theme: ThemeData(
           primarySwatch: Colors.blue,
         ),
-        home: Scaffold(appBar: AppBar(title: Text("Welcom To Kaay Livre"),),),
+        home: const MySplashScreen(),
         debugShowCheckedModeBanner: false,
       ),
     )
@@ -48,6 +49,6 @@ class _MyAppState extends State<MyApp>
     return KeyedSubtree(
       key: key,
       child: widget.child!,
-    )
+    );
   }
 }
