@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:kaay_livre/authentification/car_info_screen.dart';
 
 
 class SignUpScreen extends StatefulWidget
@@ -159,7 +160,7 @@ class _SignUpScreenState extends State<SignUpScreen>
               ElevatedButton(
                 onPressed: ()
                 {
-                  //todo
+                  Navigator.push(context, MaterialPageRoute(builder: (c)=> CarInfoScreen()));
                 },
                 style: ElevatedButton.styleFrom(
                   primary: Colors.lightGreenAccent,
