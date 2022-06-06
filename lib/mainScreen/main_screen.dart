@@ -51,22 +51,22 @@ class _MainScreenState extends State<MainScreen> with SingleTickerProviderStateM
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home),
-            label: "Home",
+            label: "Accueil",
           ),
 
           BottomNavigationBarItem(
             icon: Icon(Icons.credit_card),
-            label: "Earnings",
+            label: "Revenus",
           ),
 
           BottomNavigationBarItem(
             icon: Icon(Icons.star),
-            label: "Ratings",
+            label: "Evaluation",
           ),
 
           BottomNavigationBarItem(
             icon: Icon(Icons.person),
-            label: "Account",
+            label: "Compte",
           ),
         ],
         unselectedItemColor: Colors.white54,

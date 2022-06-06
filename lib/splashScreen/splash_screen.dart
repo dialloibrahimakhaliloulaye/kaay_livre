@@ -20,7 +20,7 @@ class _MySplashScreenState extends State<MySplashScreen>
 
   starTimer()
   {
-    Timer(const Duration(seconds: 3), () async
+    Timer(const Duration(seconds: 5), () async
     {
       Navigator.push(context, MaterialPageRoute(builder: (c)=> SignUpScreen()));
     });
@@ -48,7 +48,7 @@ class _MySplashScreenState extends State<MySplashScreen>
               const SizedBox(height: 10,),
 
               const Text(
-                "Uber and inDriver Clone App",
+                "Bienvénue sur Kaay Livré",
                 style: TextStyle(
                   fontSize: 24,
                   color: Colors.white,
