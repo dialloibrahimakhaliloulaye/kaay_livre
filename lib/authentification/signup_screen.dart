@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:kaay_livre/authentification/car_info_screen.dart';
 import 'package:kaay_livre/authentification/login_screen.dart';
 
@@ -19,6 +20,25 @@ class _SignUpScreenState extends State<SignUpScreen>
   TextEditingController passwordTextEditingController = TextEditingController();
 
 
+  validateForm()
+  {
+    if(nameTextEditingController.text.length < 3)
+      {
+        Fluttertoast.showToast(msg: "name must be atleast 3 characters.");
+      }
+    else if(!emailTextEditingController.text.contains("@"))
+      {
+        Fluttertoast.showToast(msg: "Email address is not valid.");
+      }
+    else if(phoneTextEditingController.text.isEmpty)
+    {
+      Fluttertoast.showToast(msg: "Phone Number is required.");
+    }
+    else if(passwordTextEditingController.text.length < 6)
+    {
+      Fluttertoast.showToast(msg: "Password must be atleast 6 Characters.");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -161,7 +181,7 @@ class _SignUpScreenState extends State<SignUpScreen>
               ElevatedButton(
                 onPressed: ()
                 {
-                  Navigator.push(context, MaterialPageRoute(builder: (c)=> CarInfoScreen()));
+                  validateForm();
                 },
                 style: ElevatedButton.styleFrom(
                   primary: Colors.lightGreenAccent,

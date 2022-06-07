@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "1081036888670",
+    "firebase_url": "https://kaay-livre-app-default-rtdb.firebaseio.com",
+    "project_id": "kaay-livre-app",
+    "storage_bucket": "kaay-livre-app.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1081036888670:android:4a30539df1f7128f80b2cf",
+        "android_client_info": {
+          "package_name": "com.kaaygroupe.kaay_livre"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1081036888670-90dch7n8lgfr9k33rlq7i2piijbifbc8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDiXoZJtsfi78Cv4DCO_GX9T_PF8E5pbyw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1081036888670-90dch7n8lgfr9k33rlq7i2piijbifbc8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
