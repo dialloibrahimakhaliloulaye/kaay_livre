@@ -1,7 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:kaay_livre/authentification/car_info_screen.dart';
 import 'package:kaay_livre/authentification/login_screen.dart';
+import 'package:kaay_livre/global/global.dart';
 import 'package:kaay_livre/widgets/progress_dialog.dart';
 
 
@@ -41,14 +44,52 @@ class _SignUpScreenState extends State<SignUpScreen>
     }
     else
       {
-        showDialog(
-          context: context,
-          barrierDismissible: false,
-          builder: (BuildContext c)
+        saveDriverInfoNow();
+      }
+  }
+
+  saveDriverInfoNow() async
+  {
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext c)
+        {
+          return ProgressDialog(message: "Processing, Please wait...",);
+        }
+    );
+
+    final User? firebaseUser = (
+    await fAuth.createUserWithEmailAndPassword(
+      email: emailTextEditingController.text.trim(),
+      password: passwordTextEditingController.text.trim(),
+    ).catchError((msg){
+      Navigator.pop(context);
+      Fluttertoast.showToast(msg: "Error: " + msg.toString());
+    })
+    ).user;
+
+    if(firebaseUser != null)
+      {
+        Map driverMap =
             {
-              return ProgressDialog(message: "Processing, Please wait...",);
-            }
-        );
+              "id": firebaseUser.uid,
+              "name": nameTextEditingController.text.trim(),
+              "email": emailTextEditingController.text.trim(),
+              "phone": phoneTextEditingController.text.trim(),
+            };
+
+        DatabaseReference driversRef = FirebaseDatabase.instance.ref().child("drivers");
+        driversRef.child(firebaseUser.uid).set(driverMap);
+
+        currentFirebaseUser = firebaseUser;
+        Fluttertoast.showToast(msg: "Account has been Created.");
+        Navigator.push(context, MaterialPageRoute(builder: (C)=> CarInfoScreen()));
+      }
+    else
+      {
+        Navigator.pop(context);
+        Fluttertoast.showToast(msg: "Account has not been created");
       }
   }
 
