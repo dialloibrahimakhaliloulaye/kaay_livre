@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:kaay_livre/authentification/car_info_screen.dart';
 import 'package:kaay_livre/authentification/login_screen.dart';
+import 'package:kaay_livre/widgets/progress_dialog.dart';
 
 
 class SignUpScreen extends StatefulWidget
@@ -38,6 +39,17 @@ class _SignUpScreenState extends State<SignUpScreen>
     {
       Fluttertoast.showToast(msg: "Password must be atleast 6 Characters.");
     }
+    else
+      {
+        showDialog(
+          context: context,
+          barrierDismissible: false,
+          builder: (BuildContext c)
+            {
+              return ProgressDialog(message: "Processing, Please wait...",);
+            }
+        );
+      }
   }
 
   @override
