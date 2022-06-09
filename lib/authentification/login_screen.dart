@@ -1,5 +1,10 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:kaay_livre/authentification/signup_screen.dart';
+import 'package:kaay_livre/global/global.dart';
+import 'package:kaay_livre/splashScreen/splash_screen.dart';
+import 'package:kaay_livre/widgets/progress_dialog.dart';
 
 
 class LoginScreen extends StatefulWidget
@@ -9,13 +14,60 @@ class LoginScreen extends StatefulWidget
   State<LoginScreen> createState() => _LoginScreenState();
 }
 
-
-
-
 class _LoginScreenState extends State<LoginScreen>
 {
   TextEditingController emailTextEditingController = TextEditingController();
   TextEditingController passwordTextEditingController = TextEditingController();
+
+  validateForm()
+  {
+    if(!emailTextEditingController.text.contains("@"))
+    {
+      Fluttertoast.showToast(msg: "Email address is not Valid.");
+    }
+    else if(passwordTextEditingController.text.isEmpty)
+    {
+      Fluttertoast.showToast(msg: "Password is required.");
+    }
+    else
+    {
+      loginDriverNow();
+    }
+  }
+
+  loginDriverNow() async
+  {
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (BuildContext c)
+        {
+          return ProgressDialog(message: "Processing, Please wait...",);
+        }
+    );
+
+    final User? firebaseUser = (
+        await fAuth.signInWithEmailAndPassword(
+          email: emailTextEditingController.text.trim(),
+          password: passwordTextEditingController.text.trim(),
+        ).catchError((msg){
+          Navigator.pop(context);
+          Fluttertoast.showToast(msg: "Error: " + msg.toString());
+        })
+    ).user;
+
+    if(firebaseUser != null)
+    {
+      currentFirebaseUser = firebaseUser;
+      Fluttertoast.showToast(msg: "Login Successful.");
+      Navigator.push(context, MaterialPageRoute(builder: (c)=> const MySplashScreen()));
+    }
+    else
+    {
+      Navigator.pop(context);
+      Fluttertoast.showToast(msg: "Error Occurred during Login.");
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -105,7 +157,7 @@ class _LoginScreenState extends State<LoginScreen>
               ElevatedButton(
                 onPressed: ()
                 {
-
+                  validateForm();
                 },
                 style: ElevatedButton.styleFrom(
                   primary: Colors.lightGreenAccent,
