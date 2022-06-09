@@ -52,24 +52,27 @@ class DefaultFirebaseOptions {
     messagingSenderId: '651617072295',
     projectId: 'kaay-livrer-8171a',
     authDomain: 'kaay-livrer-8171a.firebaseapp.com',
+    databaseURL: 'https://kaay-livrer-8171a-default-rtdb.firebaseio.com',
     storageBucket: 'kaay-livrer-8171a.appspot.com',
   );
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyCdo2u-H-UvZyD2MsCaz4dYpV30Stw5uow',
-    appId: '1:651617072295:android:034e8a7e8dc0c723a99782',
+    appId: '1:651617072295:android:32009663b1b39f78a99782',
     messagingSenderId: '651617072295',
     projectId: 'kaay-livrer-8171a',
+    databaseURL: 'https://kaay-livrer-8171a-default-rtdb.firebaseio.com',
     storageBucket: 'kaay-livrer-8171a.appspot.com',
   );
 
   static const FirebaseOptions ios = FirebaseOptions(
     apiKey: 'AIzaSyApMZq9qjAEq1cevLaIzYWtxfBKk10561U',
-    appId: '1:651617072295:ios:1afd07c6faf535f5a99782',
+    appId: '1:651617072295:ios:34c77d2da1e858b5a99782',
     messagingSenderId: '651617072295',
     projectId: 'kaay-livrer-8171a',
+    databaseURL: 'https://kaay-livrer-8171a-default-rtdb.firebaseio.com',
     storageBucket: 'kaay-livrer-8171a.appspot.com',
-    iosClientId: '651617072295-k3235ilpl0jrgevrq0ec5pa671v4f52g.apps.googleusercontent.com',
-    iosBundleId: 'com.kaaygroup.kaayLivrer',
+    iosClientId: '651617072295-q08j28dds61vjs5tr84eejds2bnlruj0.apps.googleusercontent.com',
+    iosBundleId: 'com.kaaygroup.kaayLivre',
   );
 }

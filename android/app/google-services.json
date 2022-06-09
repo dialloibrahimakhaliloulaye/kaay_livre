@@ -1,35 +1,78 @@
 {
   "project_info": {
-    "project_number": "1081036888670",
-    "firebase_url": "https://kaay-livre-app-default-rtdb.firebaseio.com",
-    "project_id": "kaay-livre-app",
-    "storage_bucket": "kaay-livre-app.appspot.com"
+    "project_number": "651617072295",
+    "firebase_url": "https://kaay-livrer-8171a-default-rtdb.firebaseio.com",
+    "project_id": "kaay-livrer-8171a",
+    "storage_bucket": "kaay-livrer-8171a.appspot.com"
   },
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1081036888670:android:4a30539df1f7128f80b2cf",
+        "mobilesdk_app_id": "1:651617072295:android:034e8a7e8dc0c723a99782",
         "android_client_info": {
-          "package_name": "com.kaaygroupe.kaay_livre"
+          "package_name": "com.kaaygroup.kaay_livrer"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1081036888670-90dch7n8lgfr9k33rlq7i2piijbifbc8.apps.googleusercontent.com",
+          "client_id": "651617072295-jffl8e0acrhpplqe7538rbtb5uck7mlo.apps.googleusercontent.com",
           "client_type": 3
         }
       ],
       "api_key": [
         {
-          "current_key": "AIzaSyDiXoZJtsfi78Cv4DCO_GX9T_PF8E5pbyw"
+          "current_key": "AIzaSyCdo2u-H-UvZyD2MsCaz4dYpV30Stw5uow"
         }
       ],
       "services": {
         "appinvite_service": {
           "other_platform_oauth_client": [
             {
-              "client_id": "1081036888670-90dch7n8lgfr9k33rlq7i2piijbifbc8.apps.googleusercontent.com",
+              "client_id": "651617072295-jffl8e0acrhpplqe7538rbtb5uck7mlo.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "651617072295-k3235ilpl0jrgevrq0ec5pa671v4f52g.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.kaaygroup.kaayLivrer"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:651617072295:android:32009663b1b39f78a99782",
+        "android_client_info": {
+          "package_name": "com.kaaygroupe.kaay_livre"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "651617072295-jffl8e0acrhpplqe7538rbtb5uck7mlo.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCdo2u-H-UvZyD2MsCaz4dYpV30Stw5uow"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "651617072295-jffl8e0acrhpplqe7538rbtb5uck7mlo.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "651617072295-k3235ilpl0jrgevrq0ec5pa671v4f52g.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.kaaygroup.kaayLivrer"
+              }
             }
           ]
         }
