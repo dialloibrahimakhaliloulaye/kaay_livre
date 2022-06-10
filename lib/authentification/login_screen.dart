@@ -23,11 +23,11 @@ class _LoginScreenState extends State<LoginScreen>
   {
     if(!emailTextEditingController.text.contains("@"))
     {
-      Fluttertoast.showToast(msg: "Email address is not Valid.");
+      Fluttertoast.showToast(msg: "Email address is not valid.");
     }
     else if(passwordTextEditingController.text.isEmpty)
     {
-      Fluttertoast.showToast(msg: "Password is required.");
+      Fluttertoast.showToast(msg: "Password is require.");
     }
     else
     {
@@ -60,7 +60,7 @@ class _LoginScreenState extends State<LoginScreen>
     {
       currentFirebaseUser = firebaseUser;
       Fluttertoast.showToast(msg: "Login Successful.");
-      Navigator.push(context, MaterialPageRoute(builder: (c)=> const MySplashScreen()));
+      Navigator.push(context, MaterialPageRoute(builder: (C)=> const MySplashScreen()));
     }
     else
     {
@@ -68,6 +68,8 @@ class _LoginScreenState extends State<LoginScreen>
       Fluttertoast.showToast(msg: "Error Occurred during Login.");
     }
   }
+
+
 
   @override
   Widget build(BuildContext context) {

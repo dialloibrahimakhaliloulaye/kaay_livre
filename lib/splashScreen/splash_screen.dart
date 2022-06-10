@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:kaay_livre/authentification/login_screen.dart';
 import 'package:kaay_livre/authentification/signup_screen.dart';
+import 'package:kaay_livre/global/global.dart';
 import 'package:kaay_livre/mainScreen/main_screen.dart';
 
 
@@ -21,9 +22,18 @@ class _MySplashScreenState extends State<MySplashScreen>
 
   starTimer()
   {
-    Timer(const Duration(seconds: 5), () async
+    Timer(const Duration(seconds: 3), () async
     {
-      Navigator.push(context, MaterialPageRoute(builder: (c)=> LoginScreen()));
+      if(await fAuth.currentUser != null)
+      {
+        currentFirebaseUser = fAuth.currentUser;
+        Navigator.push(context, MaterialPageRoute(builder: (c)=> MainScreen()));
+      }
+      else
+        {
+          Navigator.push(context, MaterialPageRoute(builder: (c)=> LoginScreen()));
+        }
+
     });
   }
 
