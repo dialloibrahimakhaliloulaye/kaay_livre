@@ -1,7 +1,10 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+
+import '../assistants/assistant_methods.dart';
 
 class HomeTabPage extends StatefulWidget {
   const HomeTabPage({Key? key}) : super(key: key);
@@ -22,6 +25,11 @@ class _HomeTabPageState extends State<HomeTabPage>
     target: LatLng(37.42796133580664, -122.085749655962),
     zoom: 14.4746,
   );
+
+  Position? driverCurrentPosition;
+  var geoLocator = Geolocator();
+  LocationPermission? _locationPermission;
+
 
   blackThemeGoogleMap()
   {
@@ -190,6 +198,39 @@ class _HomeTabPageState extends State<HomeTabPage>
                 ''');
   }
 
+  checkIfLocationPermissionAllowed() async
+  {
+    _locationPermission = await Geolocator.requestPermission();
+
+    if(_locationPermission == LocationPermission.denied)
+    {
+      _locationPermission = await Geolocator.requestPermission();
+    }
+  }
+
+  locateDriverPosition() async
+  {
+    Position cPosition = await Geolocator.getCurrentPosition(desiredAccuracy: LocationAccuracy.high);
+    driverCurrentPosition = cPosition;
+
+    LatLng latLngPosition = LatLng(driverCurrentPosition!.latitude, driverCurrentPosition!.longitude);
+
+    CameraPosition cameraPosition = CameraPosition(target: latLngPosition, zoom: 14);
+
+    newGoogleMapController!.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+
+    String humanReadableAddress = await AssistantMethods.searchAddressForGeographicCoOrdinates(driverCurrentPosition!, context);
+    print("this is your address = " + humanReadableAddress);
+  }
+
+  @override
+  void initState()
+  {
+    super.initState();
+
+    checkIfLocationPermissionAllowed();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -205,6 +246,8 @@ class _HomeTabPageState extends State<HomeTabPage>
 
             //black Theme google map
             blackThemeGoogleMap();
+
+            locateDriverPosition();
 
 
           },
