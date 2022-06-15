@@ -203,6 +203,9 @@ class _HomeTabPageState extends State<HomeTabPage>
             _controllerGoogleMap.complete(controller);
             newGoogleMapController = controller;
 
+            //black Theme google map
+            blackThemeGoogleMap();
+
 
           },
         ),
