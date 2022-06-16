@@ -1,7 +1,11 @@
+import 'dart:js';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:kaay_livre/firebase_options.dart';
+import 'package:kaay_livre/infoHandler/app_info.dart';
 import 'package:kaay_livre/splashScreen/splash_screen.dart';
+import 'package:provider/provider.dart';
 
 void main() async
 {
@@ -13,13 +17,16 @@ void main() async
 
   runApp(
     MyApp(
-      child: MaterialApp(
-        title: 'kaay_livre',
-        theme: ThemeData(
-          primarySwatch: Colors.blue,
+      child: ChangeNotifierProvider(
+        create: (context) => AppInfo(),
+        child: MaterialApp(
+          title: 'kaay_livre',
+          theme: ThemeData(
+            primarySwatch: Colors.blue,
+          ),
+          home: const MySplashScreen(),
+          debugShowCheckedModeBanner: false,
         ),
-        home: const MySplashScreen(),
-        debugShowCheckedModeBanner: false,
       ),
     )
   );
