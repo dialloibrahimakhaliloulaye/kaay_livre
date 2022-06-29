@@ -9,11 +9,11 @@
         android:label="kaay_livre"
         android:icon="@mipmap/ic_launcher">
 
-       <service
-           android:name=".java.MyFirebaseMessagingService"
-           android:exported="false">
+<!--       <service-->
+<!--           android:name=".java.MyFirebaseMessagingService"-->
+<!--           android:exported="false">-->
 
-       </service>
+<!--       </service>-->
 
         <activity
             android:name=".MainActivity"
@@ -57,7 +57,7 @@
             android:value="2" />
 
        <meta-data android:name="com.google.android.geo.API_KEY"
-           android:value="AIzaSyAPUUDcMdPvS0hL3KmOkF03S771SS1uamU"/>
+           android:value="AIzaSyCdo2u-H-UvZyD2MsCaz4dYpV30Stw5uow"/>
 
     </application>
 </manifest>

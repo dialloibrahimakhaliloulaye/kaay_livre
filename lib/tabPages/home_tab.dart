@@ -7,10 +7,9 @@ import 'package:flutter_geofire/flutter_geofire.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:kaay_livre/assistants/assistant_methods.dart';
+import 'package:kaay_livre/global/global.dart';
 import 'package:kaay_livre/push_notifications/push_notification_system.dart';
-
-import '../assistants/assistant_methods.dart';
-import '../global/global.dart';
 
 class HomeTabPage extends StatefulWidget {
   const HomeTabPage({Key? key}) : super(key: key);
@@ -266,11 +265,9 @@ class _HomeTabPageState extends State<HomeTabPage>
             newGoogleMapController = controller;
 
             //black Theme google map
-            blackThemeGoogleMap();
+            //blackThemeGoogleMap();
 
             locateDriverPosition();
-
-
           },
         ),
 
