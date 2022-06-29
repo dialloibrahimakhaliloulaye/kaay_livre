@@ -1,7 +1,10 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
+import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 import '../global/global.dart';
+import '../mainScreen/new_trip_screen.dart';
 import '../models/user_ride_request_information.dart';
 
 
@@ -169,8 +172,9 @@ class _NotificationDialogBoxState extends State<NotificationDialogBox>
                       audioPlayer = AssetsAudioPlayer();
 
                       //accept the rideRequest
+                      acceptRideRequest(context);
 
-                      Navigator.pop(context);
+
                     },
                     child: Text(
                       "Accept".toUpperCase(),
@@ -187,5 +191,44 @@ class _NotificationDialogBoxState extends State<NotificationDialogBox>
         ),
       ),
     );
+  }
+
+  acceptRideRequest(BuildContext context)
+  {
+    String getRideRequestId="";
+    FirebaseDatabase.instance.ref()
+        .child("drivers")
+        .child(currentFirebaseUser!.uid)
+        .child("newRideStatus")
+        .once()
+        .then((snap)
+    {
+      if(snap.snapshot.value != null)
+      {
+        getRideRequestId = snap.snapshot.value.toString();
+      }
+      else
+      {
+        Fluttertoast.showToast(msg: "This ride request do not exists.");
+      }
+
+      if(getRideRequestId == widget.userRideRequestDetails!.rideRequestId)
+      {
+        FirebaseDatabase.instance.ref()
+            .child("drivers")
+            .child(currentFirebaseUser!.uid)
+            .child("newRideStatus")
+            .set("accepted");
+
+        //trip started now - send driver to new tripScreen
+        Navigator.push(context, MaterialPageRoute(builder: (c)=> NewTripScreen(
+          userRideRequestDetails: widget.userRideRequestDetails,
+        )));
+      }
+      else
+      {
+        Fluttertoast.showToast(msg: "This Ride Request do not exists.");
+      }
+    });
   }
 }
