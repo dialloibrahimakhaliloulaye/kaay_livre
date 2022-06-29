@@ -1,6 +1,9 @@
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:kaay_livre/global/global.dart';
+import 'package:kaay_livre/models/user_ride_request_information.dart';
 
 class PushNotificationSystem
 {
@@ -14,9 +17,9 @@ class PushNotificationSystem
     {
       if(remoteMessage != null)
       {
-        print("This is Ride Request Id :: ");
-        print(remoteMessage.data["rideRequestId"]);
+
         //display ride request information - user information who request a ride
+        readUserRideRequestInformation(remoteMessage.data["rideRequestId"]);
       }
 
     });
@@ -26,21 +29,69 @@ class PushNotificationSystem
     //When the app is open and it receives a push notification
     FirebaseMessaging.onMessage.listen((RemoteMessage? remoteMessage)
     {
-      print("This is Ride Request Id :: ");
-      print(remoteMessage!.data["rideRequestId"]);
+
       //display ride request information - user information who request a ride
+      readUserRideRequestInformation(remoteMessage!.data["rideRequestId"]);
     });
 
     //3. Background
     //when the app is in the background and opened directly from the push notification
     FirebaseMessaging.onMessageOpenedApp.listen((RemoteMessage? remoteMessage)
     {
-      print("This is Ride Request Id :: ");
-      print(remoteMessage!.data["rideRequestId"]);
+
       //display ride request information - user information who request a ride
+      readUserRideRequestInformation(remoteMessage!.data["rideRequestId"]);
     });
 
   }
+
+  readUserRideRequestInformation(String userRideRequestId)
+  {
+    FirebaseDatabase.instance.ref()
+        .child("All Ride Requests")
+        .child(userRideRequestId)
+        .once()
+        .then((snapData)
+    {
+      if(snapData.snapshot.value != null)
+      {
+        double originLat = double.parse((snapData.snapshot.value! as Map)["origin"]["latitude"]);
+        double originLng = double.parse((snapData.snapshot.value! as Map)["origin"]["longitude"]);
+        String originAddress = (snapData.snapshot.value! as Map)["originAddress"];
+
+        double destinationLat = double.parse((snapData.snapshot.value! as Map)["destination"]["latitude"]);
+        double destinationLng = double.parse((snapData.snapshot.value! as Map)["destination"]["longitude"]);
+        String destinationAddress = (snapData.snapshot.value! as Map)["destinationAddress"];
+
+        String userName = (snapData.snapshot.value! as Map)["userName"];
+        String userPhone = (snapData.snapshot.value! as Map)["userPhone"];
+
+        UserRideRequestInformation userRideRequestDetails = UserRideRequestInformation();
+
+        userRideRequestDetails.originLatLng = LatLng(originLat, originLng);
+        userRideRequestDetails.originAddress = originAddress;
+
+        userRideRequestDetails.destinationLatLng = LatLng(destinationLat, destinationLng);
+        userRideRequestDetails.destinationAddress = destinationAddress;
+
+        userRideRequestDetails.userName = userName;
+        userRideRequestDetails.userPhone = userPhone;
+
+        print("This is user Ride Request Information :: ");
+        print(userRideRequestDetails.userName);
+        print(userRideRequestDetails.userPhone);
+        print(userRideRequestDetails.originAddress);
+        print(userRideRequestDetails.destinationAddress);
+
+      }
+      else
+      {
+        Fluttertoast.showToast(msg: "This Ride Request Id do not exists.");
+      }
+    });
+
+  }
+
 
   Future generateAndGetToken() async
   {
