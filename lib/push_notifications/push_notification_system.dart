@@ -1,15 +1,19 @@
+import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:kaay_livre/global/global.dart';
 import 'package:kaay_livre/models/user_ride_request_information.dart';
 
+import 'notification_dialog_box.dart';
+
 class PushNotificationSystem
 {
   FirebaseMessaging messaging = FirebaseMessaging.instance;
 
-  Future initializeCloudMessaging() async
+  Future initializeCloudMessaging(BuildContext context) async
   {
     //1. Terminated
     //when the app is completely closed and opened directly from the push notification
@@ -19,7 +23,7 @@ class PushNotificationSystem
       {
 
         //display ride request information - user information who request a ride
-        readUserRideRequestInformation(remoteMessage.data["rideRequestId"]);
+        readUserRideRequestInformation(remoteMessage.data["rideRequestId"], context);
       }
 
     });
@@ -31,7 +35,7 @@ class PushNotificationSystem
     {
 
       //display ride request information - user information who request a ride
-      readUserRideRequestInformation(remoteMessage!.data["rideRequestId"]);
+      readUserRideRequestInformation(remoteMessage!.data["rideRequestId"], context);
     });
 
     //3. Background
@@ -40,12 +44,12 @@ class PushNotificationSystem
     {
 
       //display ride request information - user information who request a ride
-      readUserRideRequestInformation(remoteMessage!.data["rideRequestId"]);
+      readUserRideRequestInformation(remoteMessage!.data["rideRequestId"], context);
     });
 
   }
 
-  readUserRideRequestInformation(String userRideRequestId)
+  readUserRideRequestInformation(String userRideRequestId, BuildContext context)
   {
     FirebaseDatabase.instance.ref()
         .child("All Ride Requests")
@@ -55,6 +59,8 @@ class PushNotificationSystem
     {
       if(snapData.snapshot.value != null)
       {
+        audioPlayer.open(Audio("music/music_notification.mp3"));
+        audioPlayer.play();
         double originLat = double.parse((snapData.snapshot.value! as Map)["origin"]["latitude"]);
         double originLng = double.parse((snapData.snapshot.value! as Map)["origin"]["longitude"]);
         String originAddress = (snapData.snapshot.value! as Map)["originAddress"];
@@ -77,11 +83,12 @@ class PushNotificationSystem
         userRideRequestDetails.userName = userName;
         userRideRequestDetails.userPhone = userPhone;
 
-        print("This is user Ride Request Information :: ");
-        print(userRideRequestDetails.userName);
-        print(userRideRequestDetails.userPhone);
-        print(userRideRequestDetails.originAddress);
-        print(userRideRequestDetails.destinationAddress);
+        showDialog(
+          context: context,
+          builder: (BuildContext context) => NotificationDialogBox(
+            userRideRequestDetails: userRideRequestDetails,
+          ),
+        );
 
       }
       else
