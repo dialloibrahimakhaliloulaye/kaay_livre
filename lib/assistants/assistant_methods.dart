@@ -1,3 +1,4 @@
+import 'package:flutter_geofire/flutter_geofire.dart';
 import 'package:kaay_livre/assistants/request_assistant.dart';
 import 'package:kaay_livre/global/global.dart';
 import 'package:kaay_livre/global/map_key.dart';
@@ -75,5 +76,21 @@ class AssistantMethods
     directionDetailsInfo.duration_value = responseDirectionApi["routes"][0]["legs"][0]["duration"]["value"];
 
     return directionDetailsInfo;
+  }
+
+  static pauseLiveLocationUpdates()
+  {
+    streamSubscriptionPosition!.pause();
+    Geofire.removeLocation(currentFirebaseUser!.uid);
+  }
+
+  static resumeLiveLocationUpdates()
+  {
+    streamSubscriptionPosition!.resume();
+    Geofire.setLocation(
+        currentFirebaseUser!.uid,
+        driverCurrentPosition!.latitude,
+        driverCurrentPosition!.longitude
+    );
   }
 }

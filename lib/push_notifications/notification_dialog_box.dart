@@ -3,6 +3,7 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
+import '../assistants/assistant_methods.dart';
 import '../global/global.dart';
 import '../mainScreen/new_trip_screen.dart';
 import '../models/user_ride_request_information.dart';
@@ -219,6 +220,7 @@ class _NotificationDialogBoxState extends State<NotificationDialogBox>
             .child(currentFirebaseUser!.uid)
             .child("newRideStatus")
             .set("accepted");
+        AssistantMethods.pauseLiveLocationUpdates();
 
         //trip started now - send driver to new tripScreen
         Navigator.push(context, MaterialPageRoute(builder: (c)=> NewTripScreen(

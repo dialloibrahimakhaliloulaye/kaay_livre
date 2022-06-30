@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 import '../assistants/assistant_methods.dart';
@@ -48,6 +49,9 @@ class _NewTripScreenState extends State<NewTripScreen>
   PolylinePoints polylinePoints = PolylinePoints();
 
   double mapPadding = 0;
+  BitmapDescriptor? iconAnimatedMarker;
+  var geoLocator = Geolocator();
+  Position? onlineDriverCurrentPosition;
 
   //Step 1:: when driver accepts the user ride request
   // originLatLng = driverCurrent Location
@@ -173,9 +177,53 @@ class _NewTripScreenState extends State<NewTripScreen>
     saveAssignedDriverDetailsToUserRideRequest();
   }
 
+  createDriverIconMarker()
+  {
+    if(iconAnimatedMarker == null)
+    {
+      ImageConfiguration imageConfiguration = createLocalImageConfiguration(context, size: const Size(2, 2));
+      BitmapDescriptor.fromAssetImage(imageConfiguration, "images/car.png").then((value)
+      {
+        iconAnimatedMarker = value;
+      });
+    }
+  }
+
+  getDriversLocationUpdatesAtRealTime()
+  {
+    streamSubscriptionDriverLivePosition = Geolocator.getPositionStream()
+        .listen((Position position)
+    {
+      driverCurrentPosition = position;
+      onlineDriverCurrentPosition = position;
+
+      LatLng latLngLiveDriverPosition = LatLng(
+        onlineDriverCurrentPosition!.latitude,
+        onlineDriverCurrentPosition!.longitude,
+      );
+
+      Marker animatingMarker = Marker(
+        markerId: const MarkerId("AnimatedMarker"),
+        position: latLngLiveDriverPosition,
+        icon: iconAnimatedMarker!,
+        infoWindow: const InfoWindow(title: "This is your Position"),
+      );
+
+      setState(() {
+        CameraPosition cameraPosition = CameraPosition(target: latLngLiveDriverPosition, zoom: 16);
+        newTripGoogleMapController!.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
+
+        setOfMarkers.removeWhere((element) => element.markerId.value == "AnimatedMarker");
+        setOfMarkers.add(animatingMarker);
+      });
+    });
+  }
+
+
   @override
   Widget build(BuildContext context)
   {
+    createDriverIconMarker();
     return Scaffold(
       body: Stack(
         children: [
@@ -207,6 +255,8 @@ class _NewTripScreenState extends State<NewTripScreen>
               );
               var userPickUpLatLng = widget.userRideRequestDetails!.originLatLng;
               drawPolyLineFromOriginToDestination(driverCurrentLatLng, userPickUpLatLng!);
+
+              getDriversLocationUpdatesAtRealTime();
             },
           ),
 
