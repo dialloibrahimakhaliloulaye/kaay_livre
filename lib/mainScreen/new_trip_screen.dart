@@ -10,6 +10,7 @@ import '../assistants/assistant_methods.dart';
 import '../assistants/black_theme_google_map.dart';
 import '../global/global.dart';
 import '../models/user_ride_request_information.dart';
+import '../widgets/fare_amount_collection_dialog.dart';
 import '../widgets/progress_dialog.dart';
 
 
@@ -568,6 +569,13 @@ class _NewTripScreenState extends State<NewTripScreen>
     streamSubscriptionDriverLivePosition!.cancel();
 
     Navigator.pop(context);
+    //display fare amount in dialog box
+    showDialog(
+      context: context,
+      builder: (BuildContext c)=> FareAmountCollectionDialog(
+        totalFareAmount: totalFareAmount,
+      ),
+    );
   }
 
 
