@@ -261,7 +261,7 @@ class _NewTripScreenState extends State<NewTripScreen>
       {
         destinationLatLng = widget.userRideRequestDetails!.originLatLng; //user PickUp Location
       }
-      else
+      else //arrived
       {
         destinationLatLng = widget.userRideRequestDetails!.destinationLatLng; //user DropOff Location
       }
@@ -450,9 +450,38 @@ class _NewTripScreenState extends State<NewTripScreen>
                     const SizedBox(height: 10.0),
 
                     ElevatedButton.icon(
-                      onPressed: ()
+                      onPressed: () async
                       {
+                        if(rideRequestStatus == "accepted") //driver has arrived at user PickUp Location
+                            {
+                          rideRequestStatus = "arrived";
 
+                          FirebaseDatabase.instance.ref()
+                              .child("All Ride Requests")
+                              .child(widget.userRideRequestDetails!.rideRequestId!)
+                              .child("status")
+                              .set(rideRequestStatus);
+
+                          setState(() {
+                            buttonTitle = "Let's Go"; //start the trip
+                            buttonColor = Colors.lightGreen;
+                          });
+
+                          showDialog(
+                            context: context,
+                            barrierDismissible: false,
+                            builder: (BuildContext c)=> ProgressDialog(
+                              message: "Loading...",
+                            ),
+                          );
+
+                          await drawPolyLineFromOriginToDestination(
+                              widget.userRideRequestDetails!.originLatLng!,
+                              widget.userRideRequestDetails!.destinationLatLng!
+                          );
+
+                          Navigator.pop(context);
+                        }
                       },
                       style: ElevatedButton.styleFrom(
                         primary: buttonColor,
