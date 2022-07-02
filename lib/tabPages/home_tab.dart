@@ -98,6 +98,8 @@ class _HomeTabPageState extends State<HomeTabPage>
     PushNotificationSystem pushNotificationSystem = PushNotificationSystem();
     pushNotificationSystem.initializeCloudMessaging(context);
     pushNotificationSystem.generateAndGetToken();
+
+    AssistantMethods.readDriverEarnings(context);
   }
 
 
