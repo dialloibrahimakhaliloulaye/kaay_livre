@@ -195,9 +195,11 @@ class _NewTripScreenState extends State<NewTripScreen>
     }
   }
 
+
   getDriversLocationUpdatesAtRealTime()
   {
     LatLng oldLatLng = LatLng(0, 0);
+
     streamSubscriptionDriverLivePosition = Geolocator.getPositionStream()
         .listen((Position position)
     {
@@ -240,6 +242,7 @@ class _NewTripScreenState extends State<NewTripScreen>
     });
   }
 
+
   updateDurationTimeAtRealTime() async
   {
     if(isRequestDirectionDetails == false)
@@ -263,7 +266,7 @@ class _NewTripScreenState extends State<NewTripScreen>
         destinationLatLng = widget.userRideRequestDetails!.originLatLng; //user PickUp Location
       }
       else //arrived
-      {
+          {
         destinationLatLng = widget.userRideRequestDetails!.destinationLatLng; //user DropOff Location
       }
 
@@ -280,13 +283,11 @@ class _NewTripScreenState extends State<NewTripScreen>
     }
   }
 
-
-
-
   @override
   Widget build(BuildContext context)
   {
     createDriverIconMarker();
+
     return Scaffold(
       body: Stack(
         children: [
@@ -316,7 +317,9 @@ class _NewTripScreenState extends State<NewTripScreen>
                   driverCurrentPosition!.latitude,
                   driverCurrentPosition!.longitude
               );
+
               var userPickUpLatLng = widget.userRideRequestDetails!.originLatLng;
+
               drawPolyLineFromOriginToDestination(driverCurrentLatLng, userPickUpLatLng!);
 
               getDriversLocationUpdatesAtRealTime();
@@ -453,8 +456,9 @@ class _NewTripScreenState extends State<NewTripScreen>
                     ElevatedButton.icon(
                       onPressed: () async
                       {
-                        if(rideRequestStatus == "accepted") //driver has arrived at user PickUp Location
-                            {
+                        //[driver has arrived at user PickUp Location] - Arrived Button
+                        if(rideRequestStatus == "accepted")
+                        {
                           rideRequestStatus = "arrived";
 
                           FirebaseDatabase.instance.ref()
@@ -569,6 +573,7 @@ class _NewTripScreenState extends State<NewTripScreen>
     streamSubscriptionDriverLivePosition!.cancel();
 
     Navigator.pop(context);
+
     //display fare amount in dialog box
     showDialog(
       context: context,
@@ -576,8 +581,42 @@ class _NewTripScreenState extends State<NewTripScreen>
         totalFareAmount: totalFareAmount,
       ),
     );
+
+    //save fare amount to driver total earnings
+    saveFareAmountToDriverEarnings(totalFareAmount);
   }
 
+  saveFareAmountToDriverEarnings(double totalFareAmount)
+  {
+    FirebaseDatabase.instance.ref()
+        .child("drivers")
+        .child(currentFirebaseUser!.uid)
+        .child("earnings")
+        .once()
+        .then((snap)
+    {
+      if(snap.snapshot.value != null) //earnings sub Child exists
+          {
+        //12
+        double oldEarnings = double.parse(snap.snapshot.value.toString());
+        double driverTotalEarnings = totalFareAmount + oldEarnings;
+
+        FirebaseDatabase.instance.ref()
+            .child("drivers")
+            .child(currentFirebaseUser!.uid)
+            .child("earnings")
+            .set(driverTotalEarnings.toString());
+      }
+      else //earnings sub Child do not exists
+          {
+        FirebaseDatabase.instance.ref()
+            .child("drivers")
+            .child(currentFirebaseUser!.uid)
+            .child("earnings")
+            .set(totalFareAmount.toString());
+      }
+    });
+  }
 
   saveAssignedDriverDetailsToUserRideRequest()
   {

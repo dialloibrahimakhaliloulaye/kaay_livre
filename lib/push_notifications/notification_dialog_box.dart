@@ -1,6 +1,7 @@
 import 'package:assets_audio_player/assets_audio_player.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 import '../assistants/assistant_methods.dart';
@@ -150,7 +151,33 @@ class _NotificationDialogBoxState extends State<NotificationDialogBox>
 
                       //cancel the rideRequest
 
-                      Navigator.pop(context);
+                      FirebaseDatabase.instance.ref()
+                          .child("All Ride Requests")
+                          .child(widget.userRideRequestDetails!.rideRequestId!)
+                          .remove().then((value)
+                      {
+                        FirebaseDatabase.instance.ref()
+                            .child("drivers")
+                            .child(currentFirebaseUser!.uid)
+                            .child("newRideStatus")
+                            .set("idle");
+                      }).then((value)
+                      {
+                        FirebaseDatabase.instance.ref()
+                            .child("drivers")
+                            .child(currentFirebaseUser!.uid)
+                            .child("tripsHistory")
+                            .child(widget.userRideRequestDetails!.rideRequestId!)
+                            .remove();
+                      }).then((value)
+                      {
+                        Fluttertoast.showToast(msg: "Ride Request has been Cancelled, Successfully. Restart App Now.");
+                      });
+                      Future.delayed(const Duration(milliseconds: 3000), ()
+                      {
+                        SystemNavigator.pop();
+                      });
+
                     },
                     child: Text(
                       "Cancel".toUpperCase(),
