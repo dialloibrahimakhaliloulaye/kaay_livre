@@ -11,7 +11,6 @@ import 'package:kaay_livre/assistants/assistant_methods.dart';
 import 'package:kaay_livre/global/global.dart';
 import 'package:kaay_livre/push_notifications/push_notification_system.dart';
 
-import '../assistants/black_theme_google_map.dart';
 
 class HomeTabPage extends StatefulWidget {
   const HomeTabPage({Key? key}) : super(key: key);
@@ -36,11 +35,6 @@ class _HomeTabPageState extends State<HomeTabPage>
 
   var geoLocator = Geolocator();
   LocationPermission? _locationPermission;
-
-
-
-
-
 
   checkIfLocationPermissionAllowed() async
   {
@@ -127,7 +121,7 @@ class _HomeTabPageState extends State<HomeTabPage>
             newGoogleMapController = controller;
 
             //black Theme google map
-            blackThemeGoogleMap(newGoogleMapController);
+            //blackThemeGoogleMap(newGoogleMapController);
 
             locateDriverPosition();
           },
