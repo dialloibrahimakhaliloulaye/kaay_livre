@@ -64,7 +64,7 @@ class _HomeTabPageState extends State<HomeTabPage>
     newGoogleMapController!.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
 
     String humanReadableAddress = await AssistantMethods.searchAddressForGeographicCoOrdinates(driverCurrentPosition!, context);
-    print("this is your address = " + humanReadableAddress);
+    print("C'est votre adresse = " + humanReadableAddress);
 
     AssistantMethods.readDriverRatings(context);
   }
@@ -167,7 +167,7 @@ class _HomeTabPageState extends State<HomeTabPage>
                     });
 
                     //display Toast
-                    Fluttertoast.showToast(msg: "you are Online Now");
+                    Fluttertoast.showToast(msg: "Vous êtes en ligne maintenant");
                   }
                   else //online
                       {
@@ -180,7 +180,7 @@ class _HomeTabPageState extends State<HomeTabPage>
                     });
 
                     //display Toast
-                    Fluttertoast.showToast(msg: "you are Offline Now");
+                    Fluttertoast.showToast(msg: "Vous êtes hors ligne maintenant");
                   }
                 },
                 style: ElevatedButton.styleFrom(
