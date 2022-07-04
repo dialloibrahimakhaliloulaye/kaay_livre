@@ -3,11 +3,12 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:kaay_livre/assistants/assistant_methods.dart';
+import 'package:kaay_livre/global/global.dart';
+import 'package:kaay_livre/mainScreen/new_trip_screen.dart';
+import 'package:kaay_livre/models/user_ride_request_information.dart';
 
-import '../assistants/assistant_methods.dart';
-import '../global/global.dart';
-import '../mainScreen/new_trip_screen.dart';
-import '../models/user_ride_request_information.dart';
+
 
 
 
