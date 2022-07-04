@@ -172,7 +172,7 @@ class _NotificationDialogBoxState extends State<NotificationDialogBox>
                             .remove();
                       }).then((value)
                       {
-                        Fluttertoast.showToast(msg: "Ride Request has been Cancelled, Successfully. Restart App Now.");
+                        Fluttertoast.showToast(msg: "La demande de livraison a été annulée, avec succès. Redémarrez l'application maintenant.");
                       });
                       Future.delayed(const Duration(milliseconds: 3000), ()
                       {
@@ -181,7 +181,7 @@ class _NotificationDialogBoxState extends State<NotificationDialogBox>
 
                     },
                     child: Text(
-                      "Cancel".toUpperCase(),
+                      "Annuler".toUpperCase(),
                       style: const TextStyle(
                         fontSize: 14.0,
                       ),
@@ -206,7 +206,7 @@ class _NotificationDialogBoxState extends State<NotificationDialogBox>
 
                     },
                     child: Text(
-                      "Accept".toUpperCase(),
+                      "Accepter".toUpperCase(),
                       style: const TextStyle(
                         fontSize: 14.0,
                       ),
@@ -238,7 +238,7 @@ class _NotificationDialogBoxState extends State<NotificationDialogBox>
       }
       else
       {
-        Fluttertoast.showToast(msg: "This ride request do not exists.");
+        Fluttertoast.showToast(msg: "Cette demande de livraison n'existe pas.");
       }
 
       if(getRideRequestId == widget.userRideRequestDetails!.rideRequestId)
@@ -257,7 +257,7 @@ class _NotificationDialogBoxState extends State<NotificationDialogBox>
       }
       else
       {
-        Fluttertoast.showToast(msg: "This Ride Request do not exists.");
+        Fluttertoast.showToast(msg: "Cette demande de livraison n'existe pas.");
       }
     });
   }

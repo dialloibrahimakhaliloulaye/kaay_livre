@@ -20,12 +20,12 @@ class RequestAssistant
       }
       else
       {
-        return "Error Occurred, Failed. No Response.";
+        return "Une erreur s'est produite, a échoué. Pas de réponse.";
       }
     }
     catch(exp)
     {
-      return "Error Occurred, Failed. No Response.";
+      return "Une erreur s'est produite, a échoué. Pas de réponse.";
     }
   }
 }

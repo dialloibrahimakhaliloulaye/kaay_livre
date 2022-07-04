@@ -24,7 +24,7 @@ class AssistantMethods
 
     var requestResponse = await RequestAssistant.receiveRequest(apiUrl);
 
-    if(requestResponse != "Error Occurred, Failed. No Response.")
+    if(requestResponse != "Une erreur s'est produite, a échoué. Pas de réponse.")
     {
       humanReadableAddress = requestResponse["results"][0]["formatted_address"];
 
@@ -63,7 +63,7 @@ class AssistantMethods
 
     var responseDirectionApi = await RequestAssistant.receiveRequest(urlOriginToDestinationDirectionDetails);
 
-    if(responseDirectionApi == "Error Occurred, Failed. No Response.")
+    if(responseDirectionApi == "Une erreur s'est produite, a échoué. Pas de réponse.")
     {
       return null;
     }
