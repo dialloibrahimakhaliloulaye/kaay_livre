@@ -45,7 +45,7 @@ class AssistantMethods
 
     DatabaseReference userRef = FirebaseDatabase.instance
         .ref()
-        .child("users")
+        .child("drivers")
         .child(currentFirebaseUser!.uid);
 
     userRef.once().then((snap)
