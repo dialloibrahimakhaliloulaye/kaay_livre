@@ -76,7 +76,7 @@ class _EarningsTabPageState extends State<EarningsTabPage> {
                   ),
 
                   const Text(
-                    "Livraison terminés",
+                    "Livraison terminées",
                     style: TextStyle(
                       color: Colors.black54,
                     ),
