@@ -76,11 +76,7 @@ class _EarningsTabPageState extends State<EarningsTabPage> {
                   ),
 
                   const Text(
-<<<<<<< HEAD
                     "Livraison terminées",
-=======
-                    "Trips Completed",
->>>>>>> parent of 3d7be7a (Traduction)
                     style: TextStyle(
                       color: Colors.black54,
                     ),
