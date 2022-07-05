@@ -29,7 +29,7 @@ class _EarningsTabPageState extends State<EarningsTabPage> {
                 children: [
 
                   const Text(
-                    "Vos gains:",
+                    "your Earnings:",
                     style: TextStyle(
                       color: Colors.grey,
                       fontSize: 16,
@@ -76,7 +76,11 @@ class _EarningsTabPageState extends State<EarningsTabPage> {
                   ),
 
                   const Text(
+<<<<<<< HEAD
                     "Livraison terminées",
+=======
+                    "Trips Completed",
+>>>>>>> parent of 3d7be7a (Traduction)
                     style: TextStyle(
                       color: Colors.black54,
                     ),

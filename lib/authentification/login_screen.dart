@@ -28,11 +28,11 @@ class _LoginScreenState extends State<LoginScreen>
   {
     if(!emailTextEditingController.text.contains("@"))
     {
-      Fluttertoast.showToast(msg: "L'adresse email n'est pas valide.");
+      Fluttertoast.showToast(msg: "Email address is not Valid.");
     }
     else if(passwordTextEditingController.text.isEmpty)
     {
-      Fluttertoast.showToast(msg: "Mot de passe requis.");
+      Fluttertoast.showToast(msg: "Password is required.");
     }
     else
     {
@@ -47,7 +47,7 @@ class _LoginScreenState extends State<LoginScreen>
         barrierDismissible: false,
         builder: (BuildContext c)
         {
-          return ProgressDialog(message: "Traitement en cours, veuillez patienter...",);
+          return ProgressDialog(message: "Processing, Please wait...",);
         }
     );
 
@@ -70,12 +70,12 @@ class _LoginScreenState extends State<LoginScreen>
         if(snap.value != null)
         {
           currentFirebaseUser = firebaseUser;
-          Fluttertoast.showToast(msg: "Connexion réussie.");
+          Fluttertoast.showToast(msg: "Login Successful.");
           Navigator.push(context, MaterialPageRoute(builder: (c)=> const MySplashScreen()));
         }
         else
         {
-          Fluttertoast.showToast(msg: "Aucun enregistrement n'existe avec cet e-mail.");
+          Fluttertoast.showToast(msg: "No record exist with this email.");
           fAuth.signOut();
           Navigator.push(context, MaterialPageRoute(builder: (c)=> const MySplashScreen()));
         }
@@ -84,7 +84,7 @@ class _LoginScreenState extends State<LoginScreen>
     else
     {
       Navigator.pop(context);
-      Fluttertoast.showToast(msg: "Une erreur s'est produite lors de la connexion.");
+      Fluttertoast.showToast(msg: "Error Occurred during Login.");
     }
   }
 
@@ -108,7 +108,7 @@ class _LoginScreenState extends State<LoginScreen>
               const SizedBox(height: 10,),
 
               const Text(
-                "Se connecter en tant que livreur",
+                "Login as a Driver",
                 style: TextStyle(
                   fontSize: 26,
                   color: Colors.grey,
@@ -150,8 +150,8 @@ class _LoginScreenState extends State<LoginScreen>
                     color: Colors.grey
                 ),
                 decoration: const InputDecoration(
-                  labelText: "Mot de passe",
-                  hintText: "Mot de passe",
+                  labelText: "Password",
+                  hintText: "Password",
                   enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey),
                   ),
@@ -180,7 +180,7 @@ class _LoginScreenState extends State<LoginScreen>
                   primary: Colors.lightGreenAccent,
                 ),
                 child: const Text(
-                  "Connexion",
+                  "Login",
                   style: TextStyle(
                     color: Colors.black54,
                     fontSize: 18,
@@ -190,7 +190,7 @@ class _LoginScreenState extends State<LoginScreen>
 
               TextButton(
                 child: const Text(
-                  "Vous n'avez pas de compte? Inscrivez-vous ici",
+                  "Do not have an Account? SignUp Here",
                   style: TextStyle(color: Colors.grey),
                 ),
                 onPressed: ()

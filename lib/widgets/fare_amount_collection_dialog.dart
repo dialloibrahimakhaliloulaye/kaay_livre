@@ -72,7 +72,7 @@ class _FareAmountCollectionDialogState extends State<FareAmountCollectionDialog>
             const Padding(
               padding: EdgeInsets.all(8.0),
               child: Text(
-                "Ceci est le montant total du voyage, veuillez le collecter auprès du client.",
+                "This is the total trip amount, Please it Collect from user.",
                 textAlign: TextAlign.center,
                 style: TextStyle(
                   color: Colors.grey,
@@ -99,7 +99,7 @@ class _FareAmountCollectionDialogState extends State<FareAmountCollectionDialog>
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     const Text(
-                      "Collecter l'argent",
+                      "Collect Cash",
                       style: TextStyle(
                         fontSize: 20,
                         color: Colors.white,

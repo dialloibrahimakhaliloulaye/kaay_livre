@@ -93,7 +93,7 @@ class PushNotificationSystem
       }
       else
       {
-        Fluttertoast.showToast(msg: "Cette demande de livraison n'existe pas..");
+        Fluttertoast.showToast(msg: "This Ride Request Id do not exists.");
       }
     });
 

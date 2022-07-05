@@ -28,19 +28,19 @@ class _SignUpScreenState extends State<SignUpScreen>
   {
     if(nameTextEditingController.text.length < 3)
       {
-        Fluttertoast.showToast(msg: "le nom doit comporter au moins 3 caractères.");
+        Fluttertoast.showToast(msg: "name must be atleast 3 characters.");
       }
     else if(!emailTextEditingController.text.contains("@"))
       {
-        Fluttertoast.showToast(msg: "l'adresse email n'est pas valide.");
+        Fluttertoast.showToast(msg: "Email address is not valid.");
       }
     else if(phoneTextEditingController.text.isEmpty)
     {
-      Fluttertoast.showToast(msg: "Le numéro de téléphone est requis.");
+      Fluttertoast.showToast(msg: "Phone Number is required.");
     }
     else if(passwordTextEditingController.text.length < 6)
     {
-      Fluttertoast.showToast(msg: "Le mot de passe doit être au moins de 6 caractères.");
+      Fluttertoast.showToast(msg: "Password must be atleast 6 Characters.");
     }
     else
       {
@@ -55,7 +55,7 @@ class _SignUpScreenState extends State<SignUpScreen>
         barrierDismissible: false,
         builder: (BuildContext c)
         {
-          return ProgressDialog(message: "Traitement en cours, veuillez patienter...",);
+          return ProgressDialog(message: "Processing, Please wait...",);
         }
     );
 
@@ -83,13 +83,13 @@ class _SignUpScreenState extends State<SignUpScreen>
         driversRef.child(firebaseUser.uid).set(driverMap);
 
         currentFirebaseUser = firebaseUser;
-        Fluttertoast.showToast(msg: "Le compte a été créé.");
+        Fluttertoast.showToast(msg: "Account has been Created.");
         Navigator.push(context, MaterialPageRoute(builder: (C)=> CarInfoScreen()));
       }
     else
       {
         Navigator.pop(context);
-        Fluttertoast.showToast(msg: "Le compte n'a pas été créé");
+        Fluttertoast.showToast(msg: "Account has not been created");
       }
   }
 
@@ -113,7 +113,7 @@ class _SignUpScreenState extends State<SignUpScreen>
               const SizedBox(height: 10,),
 
               const Text(
-                "S'inscrire en tant que livreur",
+                "Register as a Driver",
                 style: TextStyle(
                   fontSize: 26,
                   color: Colors.grey,
@@ -127,8 +127,8 @@ class _SignUpScreenState extends State<SignUpScreen>
                   color: Colors.grey,
                 ),
                 decoration: const InputDecoration(
-                  labelText: "Nom",
-                  hintText: "Nom",
+                  labelText: "Name",
+                  hintText: "Name",
                   enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey),
                   ),
@@ -181,8 +181,8 @@ class _SignUpScreenState extends State<SignUpScreen>
                   color: Colors.grey,
                 ),
                 decoration: const InputDecoration(
-                  labelText: "Téléphoner",
-                  hintText: "Téléphoner",
+                  labelText: "Phone",
+                  hintText: "Phone",
                   enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey),
                   ),
@@ -209,8 +209,8 @@ class _SignUpScreenState extends State<SignUpScreen>
                   color: Colors.grey,
                 ),
                 decoration: const InputDecoration(
-                  labelText: "Mot de passe",
-                  hintText: "Mot de passe",
+                  labelText: "Password",
+                  hintText: "Password",
                   enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey),
                   ),
@@ -240,7 +240,7 @@ class _SignUpScreenState extends State<SignUpScreen>
                   primary: Colors.lightGreenAccent,
                 ),
                 child: const Text(
-                  "Créer un compte",
+                  "Create Account",
                   style: TextStyle(
                     color: Colors.black54,
                     fontSize: 18,
@@ -250,7 +250,7 @@ class _SignUpScreenState extends State<SignUpScreen>
 
               TextButton(
                 child: const Text(
-                  "Vous avez déjà un compte? Connectez-vous ici",
+                  "Already Have an Account? Login Here",
                   style: TextStyle(color: Colors.grey),
                 ),
                 onPressed: ()

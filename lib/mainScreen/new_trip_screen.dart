@@ -70,14 +70,14 @@ class _NewTripScreenState extends State<NewTripScreen>
   {
     showDialog(
       context: context,
-      builder: (BuildContext context) => ProgressDialog(message: "S'il vous plaît, attendez...",),
+      builder: (BuildContext context) => ProgressDialog(message: "Please wait...",),
     );
 
     var directionDetailsInfo = await AssistantMethods.obtainOriginToDestinationDirectionDetails(originLatLng, destinationLatLng);
 
     Navigator.pop(context);
 
-    print("Ce sont des pointes = ");
+    print("These are points = ");
     print(directionDetailsInfo!.e_points);
 
     PolylinePoints pPoints = PolylinePoints();
@@ -215,7 +215,7 @@ class _NewTripScreenState extends State<NewTripScreen>
         markerId: const MarkerId("AnimatedMarker"),
         position: latLngLiveDriverPosition,
         icon: iconAnimatedMarker!,
-        infoWindow: const InfoWindow(title: "C'est votre position"),
+        infoWindow: const InfoWindow(title: "This is your Position"),
       );
 
       setState(() {
@@ -476,7 +476,7 @@ class _NewTripScreenState extends State<NewTripScreen>
                             context: context,
                             barrierDismissible: false,
                             builder: (BuildContext c)=> ProgressDialog(
-                              message: "Chargement...",
+                              message: "Loading...",
                             ),
                           );
 
@@ -490,7 +490,7 @@ class _NewTripScreenState extends State<NewTripScreen>
                         //[user has already sit in driver's car. Driver start trip now] - Lets Go Button
                         else if(rideRequestStatus == "arrived")
                         {
-                          rideRequestStatus = "en route";
+                          rideRequestStatus = "ontrip";
 
                           FirebaseDatabase.instance.ref()
                               .child("All Ride Requests")
@@ -499,12 +499,12 @@ class _NewTripScreenState extends State<NewTripScreen>
                               .set(rideRequestStatus);
 
                           setState(() {
-                            buttonTitle = "Fin de route"; //end the trip
+                            buttonTitle = "End Trip"; //end the trip
                             buttonColor = Colors.redAccent;
                           });
                         }
                         //[user/Driver reached to the dropOff Destination Location] - End Trip Button
-                        else if(rideRequestStatus == "en route")
+                        else if(rideRequestStatus == "ontrip")
                         {
                           endTripNow();
                         }
@@ -543,7 +543,7 @@ class _NewTripScreenState extends State<NewTripScreen>
     showDialog(
       context: context,
       barrierDismissible: false,
-      builder: (BuildContext context)=> ProgressDialog(message: "S'il vous plaît, attendez...",),
+      builder: (BuildContext context)=> ProgressDialog(message: "Please wait...",),
     );
 
     //get the tripDirectionDetails = distance travelled
