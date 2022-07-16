@@ -52,7 +52,7 @@ class PushNotificationSystem
   readUserRideRequestInformation(String userRideRequestId, BuildContext context)
   {
     FirebaseDatabase.instance.ref()
-        .child("All Ride Requests")
+        .child("All Ride Request")
         .child(userRideRequestId)
         .once()
         .then((snapData)
