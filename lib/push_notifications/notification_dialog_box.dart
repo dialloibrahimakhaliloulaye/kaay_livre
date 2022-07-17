@@ -152,7 +152,7 @@ class _NotificationDialogBoxState extends State<NotificationDialogBox>
                       //cancel the rideRequest
 
                       FirebaseDatabase.instance.ref()
-                          .child("All Ride Requests")
+                          .child("All Ride Request")
                           .child(widget.userRideRequestDetails!.rideRequestId!)
                           .remove().then((value)
                       {

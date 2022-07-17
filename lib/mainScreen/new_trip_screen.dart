@@ -235,7 +235,7 @@ class _NewTripScreenState extends State<NewTripScreen>
         "latitude": onlineDriverCurrentPosition!.latitude.toString(),
         "longitude": onlineDriverCurrentPosition!.longitude.toString(),
       };
-      FirebaseDatabase.instance.ref().child("All Ride Requests")
+      FirebaseDatabase.instance.ref().child("All Ride Request")
           .child(widget.userRideRequestDetails!.rideRequestId!)
           .child("driverLocation")
           .set(driverLatLngDataMap);
@@ -462,7 +462,7 @@ class _NewTripScreenState extends State<NewTripScreen>
                           rideRequestStatus = "arrived";
 
                           FirebaseDatabase.instance.ref()
-                              .child("All Ride Requests")
+                              .child("All Ride Request")
                               .child(widget.userRideRequestDetails!.rideRequestId!)
                               .child("status")
                               .set(rideRequestStatus);
@@ -493,7 +493,7 @@ class _NewTripScreenState extends State<NewTripScreen>
                           rideRequestStatus = "ontrip";
 
                           FirebaseDatabase.instance.ref()
-                              .child("All Ride Requests")
+                              .child("All Ride Request")
                               .child(widget.userRideRequestDetails!.rideRequestId!)
                               .child("status")
                               .set(rideRequestStatus);
@@ -560,12 +560,12 @@ class _NewTripScreenState extends State<NewTripScreen>
     //fare amount
     double totalFareAmount = AssistantMethods.calculateFareAmountFromOriginToDestination(tripDirectionDetails!);
 
-    FirebaseDatabase.instance.ref().child("All Ride Requests")
+    FirebaseDatabase.instance.ref().child("All Ride Request")
         .child(widget.userRideRequestDetails!.rideRequestId!)
         .child("fareAmount")
         .set(totalFareAmount.toString());
 
-    FirebaseDatabase.instance.ref().child("All Ride Requests")
+    FirebaseDatabase.instance.ref().child("All Ride Request")
         .child(widget.userRideRequestDetails!.rideRequestId!)
         .child("status")
         .set("ended");
@@ -621,7 +621,7 @@ class _NewTripScreenState extends State<NewTripScreen>
   saveAssignedDriverDetailsToUserRideRequest()
   {
     DatabaseReference databaseReference = FirebaseDatabase.instance.ref()
-        .child("All Ride Requests")
+        .child("All Ride Request")
         .child(widget.userRideRequestDetails!.rideRequestId!);
 
     Map driverLocationDataMap =
