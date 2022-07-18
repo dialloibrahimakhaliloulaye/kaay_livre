@@ -129,7 +129,7 @@ class AssistantMethods
   static void readTripsKeysForOnlineDriver(context)
   {
     FirebaseDatabase.instance.ref()
-        .child("All Ride Requests")
+        .child("All Ride Request")
         .orderByChild("driverId")
         .equalTo(fAuth.currentUser!.uid)
         .once()
@@ -164,7 +164,7 @@ class AssistantMethods
     for(String eachKey in tripsAllKeys)
     {
       FirebaseDatabase.instance.ref()
-          .child("All Ride Requests")
+          .child("All Ride Request")
           .child(eachKey)
           .once()
           .then((snap)
