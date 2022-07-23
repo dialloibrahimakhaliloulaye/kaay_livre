@@ -52,7 +52,7 @@ class PushNotificationSystem
   readUserRideRequestInformation(String userRideRequestId, BuildContext context)
   {
     FirebaseDatabase.instance.ref()
-        .child("All Ride Request")
+        .child("All Ride Requests")
         .child(userRideRequestId)
         .once()
         .then((snapData)
@@ -96,7 +96,7 @@ class PushNotificationSystem
       }
       else
       {
-        Fluttertoast.showToast(msg: "This Ride Request Id do not exists.");
+        Fluttertoast.showToast(msg: "Cette demande de livraison n'existe pas..");
       }
     });
 

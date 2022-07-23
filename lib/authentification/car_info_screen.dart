@@ -36,7 +36,7 @@ class _CarInfoScreenState extends State<CarInfoScreen>
     DatabaseReference driversRef = FirebaseDatabase.instance.ref().child("drivers");
     driversRef.child(currentFirebaseUser!.uid).child("car_details").set(driverCarInfoMap);
 
-    Fluttertoast.showToast(msg: "Car Details has been saved, Congratulations.");
+    Fluttertoast.showToast(msg: "Les détails du moto ont été enregistrés, félicitations.");
     Navigator.push(context, MaterialPageRoute(builder: (C)=> const MySplashScreen()));
   }
 
@@ -153,7 +153,7 @@ class _CarInfoScreenState extends State<CarInfoScreen>
                 iconSize: 26,
                 dropdownColor: Colors.black,
                 hint: const Text(
-                  "Please Choose Cars Type",
+                  "Veuillez choisir le type de motos",
                   style: TextStyle(
                     fontSize: 14.0,
                     color: Colors.grey,
@@ -193,7 +193,7 @@ class _CarInfoScreenState extends State<CarInfoScreen>
                   primary: Colors.lightGreenAccent,
                 ),
                 child: const Text(
-                  "Save Now",
+                  "Sauvegarder maintenant",
                   style: TextStyle(
                     color: Colors.black54,
                     fontSize: 18,

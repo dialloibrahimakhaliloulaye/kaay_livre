@@ -48,25 +48,25 @@ class _RatingsTabPageState extends State<RatingsTabPage>
     if(ratingsNumber == 1)
     {
       setState(() {
-        titleStarsRating = "Very Bad";
+        titleStarsRating = "Très mauvais";
       });
     }
     if(ratingsNumber == 2)
     {
       setState(() {
-        titleStarsRating = "Bad";
+        titleStarsRating = "Mauvais";
       });
     }
     if(ratingsNumber == 3)
     {
       setState(() {
-        titleStarsRating = "Good";
+        titleStarsRating = "Bien";
       });
     }
     if(ratingsNumber == 4)
     {
       setState(() {
-        titleStarsRating = "Very Good";
+        titleStarsRating = "Très bien";
       });
     }
     if(ratingsNumber == 5)
@@ -101,7 +101,7 @@ class _RatingsTabPageState extends State<RatingsTabPage>
               const SizedBox(height: 22.0,),
 
               const Text(
-                "your Ratings:",
+                "Vos notes:",
                 style: TextStyle(
                   fontSize: 22,
                   letterSpacing: 2,

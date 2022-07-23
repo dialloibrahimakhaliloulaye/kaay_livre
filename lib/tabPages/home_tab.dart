@@ -11,6 +11,7 @@ import 'package:kaay_livre/assistants/assistant_methods.dart';
 import 'package:kaay_livre/global/global.dart';
 import 'package:kaay_livre/push_notifications/push_notification_system.dart';
 
+import '../assistants/black_theme_google_map.dart';
 
 class HomeTabPage extends StatefulWidget {
   const HomeTabPage({Key? key}) : super(key: key);
@@ -37,6 +38,10 @@ class _HomeTabPageState extends State<HomeTabPage>
   LocationPermission? _locationPermission;
 
 
+
+
+
+
   checkIfLocationPermissionAllowed() async
   {
     _locationPermission = await Geolocator.requestPermission();
@@ -59,7 +64,7 @@ class _HomeTabPageState extends State<HomeTabPage>
     newGoogleMapController!.animateCamera(CameraUpdate.newCameraPosition(cameraPosition));
 
     String humanReadableAddress = await AssistantMethods.searchAddressForGeographicCoOrdinates(driverCurrentPosition!, context);
-    print("this is your address = " + humanReadableAddress);
+    print("C'est votre adresse = " + humanReadableAddress);
 
     AssistantMethods.readDriverRatings(context);
   }
@@ -122,7 +127,7 @@ class _HomeTabPageState extends State<HomeTabPage>
             newGoogleMapController = controller;
 
             //black Theme google map
-            //blackThemeGoogleMap(newGoogleMapController);
+            blackThemeGoogleMap(newGoogleMapController);
 
             locateDriverPosition();
           },
@@ -162,7 +167,7 @@ class _HomeTabPageState extends State<HomeTabPage>
                     });
 
                     //display Toast
-                    Fluttertoast.showToast(msg: "you are Online Now");
+                    Fluttertoast.showToast(msg: "Vous êtes en ligne maintenant");
                   }
                   else //online
                       {
@@ -175,7 +180,7 @@ class _HomeTabPageState extends State<HomeTabPage>
                     });
 
                     //display Toast
-                    Fluttertoast.showToast(msg: "you are Offline Now");
+                    Fluttertoast.showToast(msg: "Vous êtes hors ligne maintenant");
                   }
                 },
                 style: ElevatedButton.styleFrom(
