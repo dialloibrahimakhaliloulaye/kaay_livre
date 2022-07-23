@@ -61,6 +61,7 @@ class PushNotificationSystem
       {
         audioPlayer.open(Audio("music/music_notification.mp3"));
         audioPlayer.play();
+
         double originLat = double.parse((snapData.snapshot.value! as Map)["origin"]["latitude"]);
         double originLng = double.parse((snapData.snapshot.value! as Map)["origin"]["longitude"]);
         String originAddress = (snapData.snapshot.value! as Map)["originAddress"];
@@ -82,6 +83,8 @@ class PushNotificationSystem
 
         userRideRequestDetails.userName = userName;
         userRideRequestDetails.userPhone = userPhone;
+
+        userRideRequestDetails.rideRequestId = userRideRequestId;
 
         showDialog(
           context: context,

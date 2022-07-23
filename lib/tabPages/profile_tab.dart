@@ -1,9 +1,9 @@
 import 'package:kaay_livre/global/global.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:kaay_livre/widgets/info_design_ui.dart';
 
-import '../global/global.dart';
-import '../widgets/info_design_ui.dart';
+
 
 
 

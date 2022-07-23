@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:kaay_livre/infoHandler/app_info.dart';
+import 'package:kaay_livre/widgets/history_design_ui.dart';
 import 'package:provider/provider.dart';
 
-import '../infoHandler/app_info.dart';
-import '../widgets/history_design_ui.dart';
+
 
 
 class TripsHistoryScreen extends StatefulWidget

@@ -1,8 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:kaay_livre/models/directions.dart';
+import 'package:kaay_livre/models/trips_history_model.dart';
 
-import '../models/directions.dart';
-import '../models/trips_history_model.dart';
+
 
 class AppInfo extends ChangeNotifier
 {

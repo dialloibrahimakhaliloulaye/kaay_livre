@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:kaay_livre/assistants/assistant_methods.dart';
+import 'package:kaay_livre/assistants/black_theme_google_map.dart';
+import 'package:kaay_livre/global/global.dart';
+import 'package:kaay_livre/models/user_ride_request_information.dart';
+import 'package:kaay_livre/widgets/fare_amount_collection_dialog.dart';
+import 'package:kaay_livre/widgets/progress_dialog.dart';
 
-import '../assistants/assistant_methods.dart';
-import '../assistants/black_theme_google_map.dart';
-import '../global/global.dart';
-import '../models/user_ride_request_information.dart';
-import '../widgets/fare_amount_collection_dialog.dart';
-import '../widgets/progress_dialog.dart';
 
 
 class NewTripScreen extends StatefulWidget
@@ -311,7 +311,7 @@ class _NewTripScreenState extends State<NewTripScreen>
               });
 
               //black theme google map
-              blackThemeGoogleMap(newTripGoogleMapController);
+              //blackThemeGoogleMap(newTripGoogleMapController);
 
               var driverCurrentLatLng = LatLng(
                   driverCurrentPosition!.latitude,

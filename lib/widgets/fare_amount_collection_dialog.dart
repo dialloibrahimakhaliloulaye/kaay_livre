@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:kaay_livre/global/global.dart';
 
-import '../global/global.dart';
 
 
 class FareAmountCollectionDialog extends StatefulWidget

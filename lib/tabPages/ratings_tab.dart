@@ -2,11 +2,11 @@ import 'package:firebase_database/firebase_database.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
+import 'package:kaay_livre/global/global.dart';
+import 'package:kaay_livre/infoHandler/app_info.dart';
 import 'package:provider/provider.dart';
 import 'package:smooth_star_rating_nsafe/smooth_star_rating.dart';
 
-import '../global/global.dart';
-import '../infoHandler/app_info.dart';
 
 
 

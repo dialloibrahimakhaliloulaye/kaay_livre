@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:kaay_livre/infoHandler/app_info.dart';
+import 'package:kaay_livre/mainScreen/trips_history_screen.dart';
 import 'package:provider/provider.dart';
 
-import '../infoHandler/app_info.dart';
-import '../mainScreen/trips_history_screen.dart';
+
 
 class EarningsTabPage extends StatefulWidget {
   const EarningsTabPage({Key? key}) : super(key: key);

@@ -5,13 +5,14 @@ import 'package:kaay_livre/global/map_key.dart';
 import 'package:kaay_livre/infoHandler/app_info.dart';
 import 'package:kaay_livre/models/direction_details_info.dart';
 import 'package:kaay_livre/models/directions.dart';
+import 'package:kaay_livre/models/trips_history_model.dart';
 import 'package:kaay_livre/models/user_model.dart';
 import 'package:firebase_database/firebase_database.dart';
 import 'package:geolocator/geolocator.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:provider/provider.dart';
 
-import '../models/trips_history_model.dart';
+
 
 
 
