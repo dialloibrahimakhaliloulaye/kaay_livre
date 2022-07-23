@@ -113,7 +113,7 @@ class _SignUpScreenState extends State<SignUpScreen>
               const SizedBox(height: 10,),
 
               const Text(
-                "S'inscrire en tant que livreur",
+                "S'inscrire (livreur)",
                 style: TextStyle(
                   fontSize: 26,
                   color: Colors.grey,
@@ -250,7 +250,7 @@ class _SignUpScreenState extends State<SignUpScreen>
 
               TextButton(
                 child: const Text(
-                  "Vous avez déjà un compte? Connectez-vous ici",
+                  "Vous avez déjà un compte? Connectez-vous",
                   style: TextStyle(color: Colors.grey),
                 ),
                 onPressed: ()

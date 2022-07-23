@@ -9,12 +9,6 @@
         android:label="kaay_livre"
         android:icon="@mipmap/ic_launcher">
 
-<!--       <service-->
-<!--           android:name=".java.MyFirebaseMessagingService"-->
-<!--           android:exported="false">-->
-
-<!--       </service>-->
-
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

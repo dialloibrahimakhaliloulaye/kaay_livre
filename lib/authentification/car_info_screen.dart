@@ -36,7 +36,7 @@ class _CarInfoScreenState extends State<CarInfoScreen>
     DatabaseReference driversRef = FirebaseDatabase.instance.ref().child("drivers");
     driversRef.child(currentFirebaseUser!.uid).child("car_details").set(driverCarInfoMap);
 
-    Fluttertoast.showToast(msg: "Les détails du moto ont été enregistrés, félicitations.");
+    Fluttertoast.showToast(msg: "Les détails du moto ont été enregistrés avec succès.");
     Navigator.push(context, MaterialPageRoute(builder: (C)=> const MySplashScreen()));
   }
 

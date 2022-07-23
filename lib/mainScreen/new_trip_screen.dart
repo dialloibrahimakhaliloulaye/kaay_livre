@@ -40,7 +40,7 @@ class _NewTripScreenState extends State<NewTripScreen>
     zoom: 14.4746,
   );
 
-  String? buttonTitle = "Arrivé";
+  String? buttonTitle = "Arrived";
   Color? buttonColor = Colors.green;
 
   Set<Marker> setOfMarkers = Set<Marker>();
@@ -53,7 +53,7 @@ class _NewTripScreenState extends State<NewTripScreen>
   BitmapDescriptor? iconAnimatedMarker;
   var geoLocator = Geolocator();
   Position? onlineDriverCurrentPosition;
-  String rideRequestStatus = "accepté";
+  String rideRequestStatus = "accepted";
 
   String durationFromOriginToDestination = "";
 
@@ -77,7 +77,7 @@ class _NewTripScreenState extends State<NewTripScreen>
 
     Navigator.pop(context);
 
-    print("Ce sont des pointes = ");
+    print("Ce sont des points = ");
     print(directionDetailsInfo!.e_points);
 
     PolylinePoints pPoints = PolylinePoints();
@@ -261,7 +261,7 @@ class _NewTripScreenState extends State<NewTripScreen>
 
       var destinationLatLng;
 
-      if(rideRequestStatus == "accepté")
+      if(rideRequestStatus == "accepted")
       {
         destinationLatLng = widget.userRideRequestDetails!.originLatLng; //user PickUp Location
       }
@@ -457,9 +457,9 @@ class _NewTripScreenState extends State<NewTripScreen>
                       onPressed: () async
                       {
                         //[driver has arrived at user PickUp Location] - Arrived Button
-                        if(rideRequestStatus == "accepté")
+                        if(rideRequestStatus == "accepted")
                         {
-                          rideRequestStatus = "arrivé";
+                          rideRequestStatus = "arrived";
 
                           FirebaseDatabase.instance.ref()
                               .child("All Ride Request")
@@ -488,9 +488,9 @@ class _NewTripScreenState extends State<NewTripScreen>
                           Navigator.pop(context);
                         }
                         //[user has already sit in driver's car. Driver start trip now] - Lets Go Button
-                        else if(rideRequestStatus == "arrivé")
+                        else if(rideRequestStatus == "arrived")
                         {
-                          rideRequestStatus = "en route";
+                          rideRequestStatus = "ontrip";
 
                           FirebaseDatabase.instance.ref()
                               .child("All Ride Request")
@@ -499,12 +499,12 @@ class _NewTripScreenState extends State<NewTripScreen>
                               .set(rideRequestStatus);
 
                           setState(() {
-                            buttonTitle = "Fin de route"; //end the trip
+                            buttonTitle = "End Trip"; //end the trip
                             buttonColor = Colors.redAccent;
                           });
                         }
                         //[user/Driver reached to the dropOff Destination Location] - End Trip Button
-                        else if(rideRequestStatus == "en route")
+                        else if(rideRequestStatus == "ontrip")
                         {
                           endTripNow();
                         }
