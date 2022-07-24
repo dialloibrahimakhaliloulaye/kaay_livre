@@ -108,7 +108,7 @@ class _LoginScreenState extends State<LoginScreen>
               const SizedBox(height: 10,),
 
               const Text(
-                "Se connecter en tant que livreur",
+                "Se connecter (livreur)",
                 style: TextStyle(
                   fontSize: 26,
                   color: Colors.grey,

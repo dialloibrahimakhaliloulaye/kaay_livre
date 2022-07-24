@@ -235,7 +235,7 @@ class _NotificationDialogBoxState extends State<NotificationDialogBox>
       }
       else
       {
-        Fluttertoast.showToast(msg: "Cette demande de livraison n'existe pas.");
+        Fluttertoast.showToast(msg: "Cette demande1 de livraison n'existe pas.");
       }
 
       if(getRideRequestId == widget.userRideRequestDetails!.rideRequestId)
@@ -254,7 +254,7 @@ class _NotificationDialogBoxState extends State<NotificationDialogBox>
       }
       else
       {
-        Fluttertoast.showToast(msg: "Cette demande de livraison n'existe pas.");
+        Fluttertoast.showToast(msg: "Cette demande2 de livraison n'existe pas.");
       }
     });
   }

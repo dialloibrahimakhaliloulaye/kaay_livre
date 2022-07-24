@@ -5,6 +5,7 @@ import 'package:fluttertoast/fluttertoast.dart';
 import 'package:kaay_livre/authentification/car_info_screen.dart';
 import 'package:kaay_livre/authentification/login_screen.dart';
 import 'package:kaay_livre/global/global.dart';
+import 'package:kaay_livre/splashScreen/splash_screen.dart';
 import 'package:kaay_livre/widgets/progress_dialog.dart';
 
 
@@ -85,6 +86,7 @@ class _SignUpScreenState extends State<SignUpScreen>
         currentFirebaseUser = firebaseUser;
         Fluttertoast.showToast(msg: "Le compte a été créé.");
         Navigator.push(context, MaterialPageRoute(builder: (C)=> CarInfoScreen()));
+        // Navigator.push(context, MaterialPageRoute(builder: (C)=> const MySplashScreen()));
       }
     else
       {
