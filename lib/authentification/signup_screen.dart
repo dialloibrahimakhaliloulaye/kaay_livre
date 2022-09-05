@@ -109,7 +109,7 @@ class _SignUpScreenState extends State<SignUpScreen>
 
               Padding(
                 padding: const EdgeInsets.all(20.0),
-                child: Image.asset("images/logo1.png"),
+                child: Image.asset("images/logo.jpeg"),
               ),
 
               const SizedBox(height: 10,),
@@ -129,8 +129,8 @@ class _SignUpScreenState extends State<SignUpScreen>
                   color: Colors.grey,
                 ),
                 decoration: const InputDecoration(
-                  labelText: "Nom",
-                  hintText: "Nom",
+                  labelText: "Nom complet",
+                  hintText: "Nom complet",
                   prefixIcon: Icon(Icons.account_circle_sharp, color: Colors.white,),
                   enabledBorder: UnderlineInputBorder(
                     borderSide: BorderSide(color: Colors.grey),
